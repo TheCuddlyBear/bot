@@ -38,6 +38,7 @@ feedback or PRs targeting this approach, though you can always change it in your
 - The Logback configuration is in `src/main/resources/logback.groovy`. If the logging setup doesn't suit, you can change
   it there.
 - The default translation bundle in `src/main/resources/translations` will likely need to be renamed for your project.
+- In `src/main/dist`, read the `README.md` file and consider adding any relevant plugins there.
 
 ## Bundled Bot
 

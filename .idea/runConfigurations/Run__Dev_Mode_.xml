@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="Run (Dev Mode)" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="env">
         <map>
@@ -15,7 +15,7 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value="run" />
+          <option value="dev" />
         </list>
       </option>
       <option name="vmOptions" value="" />
@@ -23,6 +23,7 @@
     <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
     <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
     <DebugAllEnabled>false</DebugAllEnabled>
+    <RunAsTest>false</RunAsTest>
     <method v="2" />
   </configuration>
 </component>
