@@ -1,7 +1,6 @@
 [versions]
 detekt = "1.23.6"
 kotlin = "2.1.0"
-shadow = "8.1.1"
 
 groovy = "3.0.23"
 jansi = "2.4.1"
@@ -9,7 +8,7 @@ kx-ser = "1.8.0"
 logback = "1.5.16"
 logback-groovy = "1.14.5"
 logging = "7.0.3"
-kordex-gradle = "1.5.8"
+kordex-gradle = "1.7.0"
 kordex = "2.3.1-SNAPSHOT"
 
 [libraries]
@@ -24,7 +23,6 @@ logging = { module = "io.github.oshai:kotlin-logging", version.ref = "logging" }
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
 
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

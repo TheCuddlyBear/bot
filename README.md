@@ -15,6 +15,8 @@ includes the following:
 - A Groovy-based Logback config, so you have reasonable logging out of the box.
 - A default set of translations in `src/main/resources/translations`, and automatic generation of `Key` objects.
 - Automatic generation of a Dockerfile via a `createDockerFile` task, also run at build time.
+- The buildscript packages the bot using the Gradle `distribution` plugin, with the final distribution placed in
+  `build/distributions` in both `.tar` and `.zip` format.
 
 **Note:** This template includes a `.editorconfig` file that defaults to using tabs for indentation in almost all file
 types. This is because tabs are more accessible for the blind, or those with impaired vision. We won't accept
@@ -58,7 +60,7 @@ Create this file, fill it out, and run the `run` gradle task for testing in deve
 
 ## Further Reading
 
-To learn more about KordEx and how to work with it, [please browse the documentation](https://docs.kordex.dev).
+To learn more about KordEx and how to work with it, [please read the documentation](https://docs.kordex.dev).
 
 For more information on the KordEx Gradle plugin and what you can do with it,
 [please read this README](https://github.com/Kord-Extensions/gradle-plugins#kordex-plugin).

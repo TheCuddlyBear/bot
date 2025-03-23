@@ -2,10 +2,11 @@ import dev.kordex.gradle.plugins.docker.file.*
 import dev.kordex.gradle.plugins.kordex.DataCollection
 
 plugins {
+	distribution
+
 	alias(libs.plugins.kotlin.jvm)
 	alias(libs.plugins.kotlin.serialization)
 
-	alias(libs.plugins.shadow)
 	alias(libs.plugins.detekt)
 
 	alias(libs.plugins.kordex.docker)
@@ -27,6 +28,21 @@ dependencies {
 	implementation(libs.logback)
 	implementation(libs.logback.groovy)
 	implementation(libs.logging)
+}
+
+// Configure distributions plugin
+distributions {
+	main {
+		distributionBaseName = project.name
+
+		contents {
+			// Copy the LICENSE file into the distribution
+			from("LICENSE")
+
+			// Exclude src/main/dist/README.md
+			exclude("README.md")
+		}
+	}
 }
 
 kordEx {
@@ -66,28 +82,47 @@ docker {
 
 		emptyLine()
 
+		comment("Create required directories")
 		runShell("mkdir -p /bot/plugins")
 		runShell("mkdir -p /bot/data")
-
-		emptyLine()
-
-		copy("build/libs/$name-*-all.jar", "/bot/bot.jar")
+		runShell("mkdir -p /dist/out")
 
 		emptyLine()
 
 		// Add volumes for locations that you need to persist. This is important!
+		comment("Declare required volumes")
 		volume("/bot/data")  // Storage for data files
 		volume("/bot/plugins")  // Plugin ZIP/JAR location
 
 		emptyLine()
 
+		comment("Copy the distribution files into the container")
+		copy("build/distributions/${project.name}-${project.version}.tar", "/dist")
+
+		emptyLine()
+
+		comment("Extract the distribution files, and prepare them for use")
+		runShell("tar -xf /dist/${project.name}-${project.version}.tar -C /dist/out")
+
+		if (file("src/main/dist/plugins").isDirectory) {
+			runShell("mv /dist/out/${project.name}-${project.version}/plugins/* /bot/plugins")
+		}
+
+		runShell("chmod +x /dist/out/${project.name}-${project.version}/bin/$name")
+
+		emptyLine()
+
+		comment("Clean up unnecessary files")
+		runShell("rm /dist/${project.name}-${project.version}.tar")
+
+		emptyLine()
+
+		comment("Set the correct working directory")
 		workdir("/bot")
 
 		emptyLine()
 
-		entryPointExec(
-			"java", "-Xms2G", "-Xmx2G",
-			"-jar", "/bot/bot.jar"
-		)
+		comment("Run the distribution start script")
+		entryPointExec("/dist/out/${project.name}-${project.version}/bin/$name")
 	}
 }
