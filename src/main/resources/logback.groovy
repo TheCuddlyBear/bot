@@ -4,7 +4,7 @@ import ch.qos.logback.core.ConsoleAppender
 def defaultLevel = INFO
 def defaultTarget = ConsoleTarget.SystemErr
 
-def DEV_MODE = System.getProperty("devMode").toBoolean() ||
+def DEV_MODE = System.getProperty("devMode")?.toBoolean() ||
 	System.getenv("DEV_MODE") != null ||
 	["dev", "development"].contains(System.getenv("ENVIRONMENT"))
 
