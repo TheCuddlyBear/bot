@@ -9,7 +9,7 @@ includes the following:
 - A Gradle Kotlin build script that uses the KordEx Gradle plugin and Detekt for linting (with a
   fairly strict configuration) – this uses Gradle 7's new version catalogue feature, for easy configuration of
   dependencies.
-- GitHub CI scripts that build the bot and publish its artefacts.
+- Forgejo CI scripts that build the bot and publish its artefacts.
 - A reasonable `.gitignore` file, including one in the `.idea` folder that ignores files that you shouldn't commit –
   if you're using IDEA yourself, you should install the Ignore plugin to handle changes to this for you.
 - A Groovy-based Logback config, so you have reasonable logging out of the box.
@@ -24,7 +24,7 @@ feedback or PRs targeting this approach, though you can always change it in your
 
 ## Potential Changes
 
-- The `.yml` files in `.github/` are used to configure GitHub apps. If you're not using them, you can remove them.
+- The `.yml` files in `.forgejo/` are used to configure Forgejo Actions. If you're not using them, you can remove them.
 - The provided `LICENSE` file contains The Unlicense, which makes this repository public domain. You will probably want
   to change this—we suggest looking at [Choose a License](https://choosealicense.com/) if you're not sure where to
   start.

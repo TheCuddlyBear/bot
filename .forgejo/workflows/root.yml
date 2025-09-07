@@ -1,0 +1,45 @@
+name: Build (Main/Root)
+
+on:
+  push:
+    branches:
+      - main
+      - root
+
+jobs:
+  build:
+    runs-on: codeberg-small
+
+    steps:
+      - name: "Checkout Repository"
+        uses: https://code.forgejo.org/actions/checkout@v4
+
+      - name: Set up Java
+        uses: "https://github.com/actions/setup-java@v4"
+
+        with:
+          java-version: 17
+          distribution: temurin
+
+      - name: Cache (Gradle)
+        uses: https://code.forgejo.org/actions/cache@v4
+
+        with:
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Gradle (Build)
+        run: "./gradlew build --no-daemon"
+
+      - name: Upload artifact (Distribution)
+        uses: https://code.forgejo.org/actions/upload-artifact@v4
+
+        with:
+          name: Distribution
+          path: build/distributions/*.zip
