@@ -43,5 +43,5 @@ jobs:
         uses: https://code.forgejo.org/forgejo/upload-artifact@v4
 
         with:
-          name: Distribution
+          name: distribution.zip
           path: build/distributions/*.zip
