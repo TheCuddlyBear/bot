@@ -40,7 +40,7 @@ jobs:
         run: "./gradlew build --no-daemon"
 
       - name: Upload artifact (Distribution)
-        uses: https://code.forgejo.org/actions/upload-artifact@v4
+        uses: https://code.forgejo.org/forgejo/upload-artifact@v4
 
         with:
           name: Distribution
