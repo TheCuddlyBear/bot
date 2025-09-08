@@ -24,7 +24,10 @@ feedback or PRs targeting this approach, though you can always change it in your
 
 ## Potential Changes
 
-- The `.yml` files in `.forgejo/` are used to configure Forgejo Actions. If you're not using them, you can remove them.
+- The `.yml` files in `.forgejo/` are used to configure Forgejo Actions.
+  If you're not using them, you can remove them.
+- The `workflows` folder contains sample GitHub Actions workflows, if you're building your project on GitHub.
+  Delete `.forgejo/` and move `workflows/.github` into the project's root folder to use them.
 - The provided `LICENSE` file contains The Unlicense, which makes this repository public domain. You will probably want
   to change this—we suggest looking at [Choose a License](https://choosealicense.com/) if you're not sure where to
   start.
