@@ -10,6 +10,7 @@ plugins {
 	alias(libs.plugins.detekt)
 
 	alias(libs.plugins.kordex.docker)
+	alias(libs.plugins.kordex.i18n)
 	alias(libs.plugins.kordex.plugin)
 	alias(libs.plugins.ksp.plugin)
 }
@@ -56,11 +57,10 @@ kordEx {
 
 		mainClass = "template.AppKt"
 	}
+}
 
-	i18n {
-		classPackage = "template.i18n"
-		translationBundle = "template.strings"
-	}
+i18n {
+	bundle("template.strings", "template.i18n")
 }
 
 detekt {
